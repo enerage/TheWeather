@@ -37,16 +37,24 @@
             this.ThreeDayFromToday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FourDayFromToday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FiveDayFromToday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            label2.Text = "Forecast for London";
+            this.CurrentText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CurrentTemperature = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sunrise = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sunset = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Wind = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Humidity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 43);
+            this.button1.Location = new System.Drawing.Point(12, 71);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(272, 32);
+            this.button1.Size = new System.Drawing.Size(272, 113);
             this.button1.TabIndex = 0;
             this.button1.Text = "Search";
             this.button1.UseVisualStyleBackColor = true;
@@ -54,17 +62,18 @@
             // 
             // cityTextBox
             // 
-            this.cityTextBox.Location = new System.Drawing.Point(50, 15);
+            this.cityTextBox.Location = new System.Drawing.Point(50, 43);
             this.cityTextBox.Name = "cityTextBox";
             this.cityTextBox.Size = new System.Drawing.Size(234, 22);
             this.cityTextBox.TabIndex = 1;
             this.cityTextBox.Text = "London";
+            this.cityTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.cityTextBox.TextChanged += new System.EventHandler(this.cityTextBox_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 15);
+            this.label1.Location = new System.Drawing.Point(9, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 17);
             this.label1.TabIndex = 2;
@@ -73,7 +82,6 @@
             // 
             // dataGridView2
             // 
-
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.OneDayFromToday,
@@ -94,7 +102,6 @@
             this.OneDayFromToday.HeaderText = "OneDayFromToday";
             this.OneDayFromToday.Name = "OneDayFromToday";
             this.OneDayFromToday.ReadOnly = true;
-            
             // 
             // TwoDayFromToday
             // 
@@ -124,16 +131,80 @@
             this.FiveDayFromToday.Name = "FiveDayFromToday";
             this.FiveDayFromToday.ReadOnly = true;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CurrentText,
+            this.CurrentTemperature,
+            this.Sunrise,
+            this.Sunset,
+            this.Wind,
+            this.Humidity});
+            this.dataGridView1.Location = new System.Drawing.Point(290, 71);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(950, 51);
+            this.dataGridView1.TabIndex = 6;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Perpetua Titling MT", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(290, 33);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(479, 30);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Current weather information - ";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Perpetua Titling MT", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(422, 157);
+            this.label2.Location = new System.Drawing.Point(285, 157);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(208, 30);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Forecast for ";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.label2.Size = new System.Drawing.Size(0, 30);
+            this.label2.TabIndex = 8;
+            this.label2.Click += new System.EventHandler(this.label2_Click_1);
+            // 
+            // CurrentText
+            // 
+            this.CurrentText.HeaderText = "CurrentText";
+            this.CurrentText.Name = "CurrentText";
+            this.CurrentText.ReadOnly = true;
+            // 
+            // CurrentTemperature
+            // 
+            this.CurrentTemperature.HeaderText = "CurrentTemperature";
+            this.CurrentTemperature.Name = "CurrentTemperature";
+            this.CurrentTemperature.ReadOnly = true;
+            // 
+            // Sunrise
+            // 
+            this.Sunrise.HeaderText = "Sunrise";
+            this.Sunrise.Name = "Sunrise";
+            this.Sunrise.ReadOnly = true;
+            // 
+            // Sunset
+            // 
+            this.Sunset.HeaderText = "Sunset";
+            this.Sunset.Name = "Sunset";
+            this.Sunset.ReadOnly = true;
+            // 
+            // Wind
+            // 
+            this.Wind.HeaderText = "Wind";
+            this.Wind.Name = "Wind";
+            this.Wind.ReadOnly = true;
+            // 
+            // Humidity
+            // 
+            this.Humidity.HeaderText = "Humidity";
+            this.Humidity.Name = "Humidity";
+            this.Humidity.ReadOnly = true;
             // 
             // MainForm
             // 
@@ -141,6 +212,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1252, 385);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cityTextBox);
@@ -148,6 +221,7 @@
             this.Name = "MainForm";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -159,14 +233,20 @@
         private System.Windows.Forms.TextBox cityTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn OneDayFromToday;
         private System.Windows.Forms.DataGridViewTextBoxColumn TwoDayFromToday;
         private System.Windows.Forms.DataGridViewTextBoxColumn ThreeDayFromToday;
         private System.Windows.Forms.DataGridViewTextBoxColumn FourDayFromToday;
         private System.Windows.Forms.DataGridViewTextBoxColumn FiveDayFromToday;
-
-
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CurrentText;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CurrentTemperature;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sunrise;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sunset;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Wind;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Humidity;
     }
 }
 

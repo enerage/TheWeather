@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
-using System.Threading;
 
 namespace TheWeather
 {
@@ -26,16 +19,26 @@ namespace TheWeather
         private void PopulateData(JObject currentResult)
         {
             this.currentResult = currentResult;
-
             var highestTemp = new List<string>();
             var lowestTemp = new List<string>();
             var text = new List<string>();
-
+            var title = currentResult.SelectToken("query.results.channel.description");
+            var windSpeed = currentResult.SelectToken("query.results.channel.wind.speed");
+            var humidity = currentResult.SelectToken("query.results.channel.atmosphere.humidity");
+            var sunRise = currentResult.SelectToken("query.results.channel.astronomy.sunrise");
+            var sunSet = currentResult.SelectToken("query.results.channel.astronomy.sunset");
+            var currentDate = currentResult.SelectToken("query.results.channel.item.condition.date");
+            var currentTemp = currentResult.SelectToken("query.results.channel.item.condition.temp");
+            var currentText = currentResult.SelectToken("query.results.channel.item.condition.text");
+            label2.Text = title.ToString();
+            label3.Text = "Current weather information - " + currentDate;
+            dataGridView1.Rows.Clear();
+            dataGridView1.Rows[0].SetValues(currentText, currentTemp, sunRise, sunSet, windSpeed, humidity);
             for (int i = 0; i < 5; i++)
             {
 
-                var jToken = currentResult.SelectToken(string.Format("query.results.channel.item.forecast[{0}]", i));
-                var dateAndDay = jToken.SelectToken("date").ToString() + " " + jToken.SelectToken("day").ToString();
+                var jTokenForecast = currentResult.SelectToken(string.Format("query.results.channel.item.forecast[{0}]", i));
+                var dateAndDay = jTokenForecast.SelectToken("date").ToString() + " " + jTokenForecast.SelectToken("day").ToString();
                 switch (i)
                 {
                     case 0:
@@ -56,9 +59,9 @@ namespace TheWeather
                     default:
                         break;
                 }
-                highestTemp.Add(jToken.SelectToken("high").ToString());
-                lowestTemp.Add(jToken.SelectToken("low").ToString());
-                text.Add(jToken.SelectToken("text").ToString());
+                highestTemp.Add(jTokenForecast.SelectToken("high").ToString());
+                lowestTemp.Add(jTokenForecast.SelectToken("low").ToString());
+                text.Add(jTokenForecast.SelectToken("text").ToString());
             }
 
             this.dataGridView2.Rows.Add(text[0], text[1], text[2], text[3], text[4]);
@@ -102,12 +105,26 @@ namespace TheWeather
             var currentResult =await TakeWeatherInformation.GetAsync(cityTextBox.Text);
             dataGridView2.Rows.Clear();
             PopulateData(currentResult);
-            label2.Text = "Forecast for " + cityTextBox.Text;
         }
 
         
 
         private void cityTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
         }

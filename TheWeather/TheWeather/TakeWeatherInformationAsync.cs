@@ -1,10 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace TheWeather
@@ -12,8 +7,6 @@ namespace TheWeather
     public static class TakeWeatherInformation
     {
         private static HttpClient client = new HttpClient();
-
-
 
         private static string TakeCityUrl(string city)
         {
