@@ -15,15 +15,9 @@ namespace TheWeather
         [STAThread]
         static void Main()
         {
-
-            var requester = new TakeWeatherInformation();
-            requester.GetAsync("London");
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
-
-
         }
     }
 }
